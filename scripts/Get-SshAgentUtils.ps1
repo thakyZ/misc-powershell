@@ -23,7 +23,7 @@ function Get-SshAgent() {
     # Make sure the process is actually running
     $process = Get-Process -Id $agentPid -ErrorAction SilentlyContinue
 
-    if(($process -eq $null) -or ($process.ProcessName -ne "ssh-agent")) {
+    if(($null -eq $process) -or ($process.ProcessName -ne "ssh-agent")) {
       # It is not running (this is an error). Remove env vars and return 0 for no agent.
       [Environment]::SetEnvironmentVariable("SSH_AGENT_PID", $null, "Process")
       [Environment]::SetEnvironmentVariable("SSH_AGENT_PID", $null, "User")
@@ -67,7 +67,7 @@ function Stop-SshAgent() {
   if ([int]$agentPid -gt 0) {
     # Stop agent process
     $proc = Get-Process -Id $agentPid
-    if ($proc -ne $null) {
+    if ($null -ne $proc) {
       Stop-Process $agentPid
     }
 
