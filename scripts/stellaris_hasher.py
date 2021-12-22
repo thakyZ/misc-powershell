@@ -43,8 +43,7 @@ if lib not in algorithms_available:
     quit()
 
 if args.file:
-    if not args.force and os.path.exists(args.file):
-        if input("The file \"" + args.file + "\" already exists, would you like to overwrite? [y/n] ").lower() != 'y':
+    if not args.force and os.path.exists(args.file) and input("The file \"" + args.file + "\" already exists, would you like to overwrite? [y/n] ").lower() != 'y':
             quit()
     text_file = open(args.file, "w")
 
@@ -59,4 +58,4 @@ for dir in os.scandir(rootdir):
 if args.file:
     text_file.close()
     if args.open:
-        os.startfile(file_dir)
+        os.startfile(args.file)
