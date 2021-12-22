@@ -1,0 +1,5 @@
+{
+  "DoubleVisionInstall": "doubleVision.bat",
+  "pngCrushInstall": "pngcrush.exe",
+  "RubyInstall": "gem.cmd"
+}
