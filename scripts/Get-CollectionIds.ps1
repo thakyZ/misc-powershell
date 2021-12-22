@@ -1,13 +1,13 @@
 Param (
-    [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Input a workshop id.')]
-    [ValidateNotNull()]
-    [ValidateNotNullOrEmpty()]
-    [string]$Id,
+  [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Input a workshop id.')]
+  [ValidateNotNull()]
+  [ValidateNotNullOrEmpty()]
+  [string]$Id,
 
-    [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Enter the file path.')]
-    [ValidateNotNull()]
-    [ValidateNotNullOrEmpty()]
-    [string]$Path
+  [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Enter the file path.')]
+  [ValidateNotNull()]
+  [ValidateNotNullOrEmpty()]
+  [string]$Path
 )
 
 Import-Module PowerHTML
@@ -20,9 +20,9 @@ $Links = $GetPage.SelectNodes('//a') | Where-Object { $_.SelectNodes("div[@class
 foreach ($Link in $Links) {
   $ModID = $Link.GetAttributeValue("href", "").Replace('https://steamcommunity.com/sharedfiles/filedetails/?id=','')
   if($ModIDCollection -notcontains $modID) {
-    $Desc = $Link.innerText
-    Write-Host "Found Mod: $Desc"
-    $ModIDCollection += $ModID
+  $Desc = $Link.innerText
+  Write-Host "Found Mod: $Desc"
+  $ModIDCollection += $ModID
   }
 }
 if (Test-Path $Path) {
