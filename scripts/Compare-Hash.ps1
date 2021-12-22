@@ -29,37 +29,37 @@ The file path to the file to be hash checked.
 [OutputType([string])]
 [Alias()]
 Param (
-    [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Select a cryptographic hash - e.g MD5, SHA1, SHA256, SHA384 or SHA512')]
-    [ValidateNotNull()]
-    [ValidateNotNullOrEmpty()]
-    [ValidateSet("MD5", "SHA1", "SHA256", "SHA384", "SHA512")]
-    [string]$Algorithm,
+  [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Select a cryptographic hash - e.g MD5, SHA1, SHA256, SHA384 or SHA512')]
+  [ValidateNotNull()]
+  [ValidateNotNullOrEmpty()]
+  [ValidateSet("MD5", "SHA1", "SHA256", "SHA384", "SHA512")]
+  [string]$Algorithm,
 
-    [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Enter the provided cryptographic hash to validate against.')]
-    [ValidateNotNull()]
-    [ValidateNotNullOrEmpty()]
-    [string]$Hash,
+  [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Enter the provided cryptographic hash to validate against.')]
+  [ValidateNotNull()]
+  [ValidateNotNullOrEmpty()]
+  [string]$Hash,
 
-    [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Enter the file path.')]
-    [ValidateNotNull()]
-    [ValidateNotNullOrEmpty()]
-    [string]$Path
+  [Parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true, HelpMessage = 'Enter the file path.')]
+  [ValidateNotNull()]
+  [ValidateNotNullOrEmpty()]
+  [string]$Path
 )
 
 Begin {
-    Write-Verbose -Message 'Clearing variables'
-    Clear-Variable ComputedHash -ErrorAction SilentlyContinue
+  Write-Verbose -Message 'Clearing variables'
+  Clear-Variable ComputedHash -ErrorAction SilentlyContinue
 }
 
 Process {
-    Write-Verbose -Message 'Generating hash for selected file'
-    $ComputedHash = (Get-FileHash -Algorithm $Algorithm -Path $Path -ErrorAction Stop).Hash
+  Write-Verbose -Message 'Generating hash for selected file'
+  $ComputedHash = (Get-FileHash -Algorithm $Algorithm -Path $Path -ErrorAction Stop).Hash
 
-    Write-Verbose -Message 'Running if/else match loop'
-    if ($ComputedHash -eq $Hash) {
-        Write-Output 'MATCH'
-    }
-    else {
-        Write-Output 'NO MATCH'
-    }
+  Write-Verbose -Message 'Running if/else match loop'
+  if ($ComputedHash -eq $Hash) {
+    Write-Output 'MATCH'
+  }
+  else {
+    Write-Output 'NO MATCH'
+  }
 }
