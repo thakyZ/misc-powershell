@@ -1,7 +1,7 @@
 param(
   [Parameter(Position = 0,
-      Mandatory = $true,
-      HelpMessage = 'Boolean to set value')]
+  Mandatory = $true,
+  HelpMessage = 'Boolean to set value')]
   [Boolean]$toggle
 )
 
