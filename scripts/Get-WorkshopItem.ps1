@@ -1,8 +1,8 @@
 [CmdletBinding()]
 param (
-    [Parameter(HelpMessage="The ID for the workshop item.",Mandatory=$true)]
-    [string]
-    $WorkshopId
+  [Parameter(HelpMessage="The ID for the workshop item.",Mandatory=$true)]
+  [string]
+  $WorkshopId
 )
 
 if ($null -eq $WorkshopId)
